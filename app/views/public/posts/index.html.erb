@@ -1,0 +1,7 @@
+<h1 class="my-4">投稿一覧</h1>
+
+<%= render "public/posts/posts", posts: @posts %>
+
+<% if user_signed_in? %>
+  <%= link_to "新規投稿", new_post_path, class: "btn btn-primary" %>
+<% end %>

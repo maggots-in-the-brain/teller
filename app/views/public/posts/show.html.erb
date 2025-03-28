@@ -1,0 +1,23 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <th><%= t i18(:post, :title) %></th>
+      <td><%= @post.title %></td>
+    </tr>
+    <tr>
+      <th><%= t i18(:post, :address) %></th>
+      <td><%= @post.address %></td>
+    </tr>
+    <tr>
+      <th><%= t i18(:post, :address) %></th>
+      <td><%= @post.address %></td>
+    </tr>
+  </tbody>
+</table>
+          
+<%= link_to "一覧に戻る", posts_path, class: "btn btn-primary" %>
+
+<% if user_signed_in? && current_user == @post.user %>
+  <%= link_to "編集", edit_post_path(@post), class: "btn btn-warning" %>
+  <%= link_to "削除", @post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>

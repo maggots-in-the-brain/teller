@@ -1,1 +1,10 @@
 @use '~bootstrap/scss/bootstrap';
+
+.jumbotron {
+  height: 40vh;
+  background-image: url("../images/top_img.jpg");
+  background-size: cover;
+  background-repeat: no-repoat;
+  background-position: center;
+  color: #fff;
+}

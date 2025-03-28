@@ -1,2 +1,11 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<%= content_for :top_header do %>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h1 class="display-4">Teller</h1>
+      
+      <p class="lead">あなたの知らない都市伝説がわかる</p>
+
+      <%= link_to "はじめる", new_user_registration_path, class: "btn btn-primary", style: "margin-top:4rem;" %>
+    </div>
+  </div>
+<% end %>
