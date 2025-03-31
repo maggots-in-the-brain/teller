@@ -1,16 +1,22 @@
 <table class="table">
   <tbody>
     <tr>
-      <th><%= t i18(:post, :title) %></th>
-      <td><%= @post.title %></td>
+      <th width="20%"><%= t i18(:post, :title) %></th>
+      <td width="80%"><%= @post.title %></td>
     </tr>
     <tr>
       <th><%= t i18(:post, :address) %></th>
       <td><%= @post.address %></td>
     </tr>
     <tr>
-      <th><%= t i18(:post, :address) %></th>
-      <td><%= @post.address %></td>
+      <th><%= t i18(:post, :body) %></th>
+      <td><%= @post.body %></td>
+    </tr>
+    <tr>
+      <th>地図</th>
+      <td>
+        <div id="map" data-latitude=<%= @post.latitude %> data-longitude=<%= @post.longitude %>></div>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -18,6 +24,7 @@
 <%= link_to "一覧に戻る", posts_path, class: "btn btn-primary" %>
 
 <% if user_signed_in? && current_user == @post.user %>
-  <%= link_to "編集", edit_post_path(@post), class: "btn btn-warning" %>
+  <%= link_to "編集", edit_post_path(@post), data: { turbolinks: false }, class: "btn btn-warning" %>
   <%= link_to "削除", @post, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 <% end %>
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

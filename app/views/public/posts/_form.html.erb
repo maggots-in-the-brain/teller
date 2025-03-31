@@ -17,6 +17,11 @@
           </div>
 
           <div class="mb-2">
+            <%= f.label :zipcode, "郵便番号" %><br />
+            <%= text_field_tag :zipcode, nil, class: "form-control" %>
+          </div>
+
+          <div class="mb-2">
             <%= f.label :address %><br />
             <%= f.text_field :address, class: "form-control" %>
           </div>
@@ -29,3 +34,5 @@
     </div>
   </div>
 </div>
+
+<%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>
