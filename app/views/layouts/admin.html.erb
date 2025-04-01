@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Teller</title>
+    <title>Teller | Console</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,13 +12,11 @@
 
   <body>
     <header>
-      <%= render 'layouts/navigation' %>
-      <div class="container">
-        <%= render 'layouts/flash_messages' %>
-      </div>
-      <%= yield :top_header %>
+      <%= render 'layouts/admin_navigation' %>
+      <%= yield :top_header %> 
     </header>
     <main class="container">
+      <%= render 'layouts/flash_messages' %>
       <div class="mt-4">
         <%= yield %>
       </div>
