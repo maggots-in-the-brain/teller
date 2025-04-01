@@ -1,2 +1,22 @@
 <h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t i18(:post_comment, :user) %></th>
+      <th><%= t i18(:post_comment, :comment) %></th>
+      <th><%= t i18(:post_comment, :created_at) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_comments.each do |post_comment| %>
+      <tr>
+        <td><%= post_comment.user.name %></td>
+        <td><%= simple_format post_comment.comment %></td>
+        <td><%= l post_comment.created_at, format: :long %></td>
+        <td><%= link_to "削除", admin_post_comment_path(post_comment), data: { confirm: "本当に削除しますか？" }, method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

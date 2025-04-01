@@ -8,3 +8,7 @@ ja:
         latitude: 緯度
         longitude: 経度
         user: 投稿者
+      post_comment:
+        user: 投稿者
+        comment: コメント
+        created_at: 投稿日時
