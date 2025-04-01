@@ -7,5 +7,5 @@ class Post < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode
-
+  has_many :post_comments, dependent: :destroy
 end

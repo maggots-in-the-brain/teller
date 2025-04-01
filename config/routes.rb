@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create]
+    end
+    resources :post_comments, only: [:destroy]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
