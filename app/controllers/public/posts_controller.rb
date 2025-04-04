@@ -4,6 +4,11 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all.order(created_at: :desc)
+    if params[:keyword].present?
+      @posts = @posts.where('title LIKE(?)', "%#{params[:keyword]}%").or(
+        @posts.where('address LIKE(?)', "%#{params[:keyword]}%")
+      )
+    end
   end
 
   def show

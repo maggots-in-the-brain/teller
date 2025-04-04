@@ -1,5 +1,16 @@
 <h1 class="my-4">投稿一覧</h1>
 
+<%= form_with url: posts_path, method: :get, class: "my-3" do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.search_field :keyword, class: "form-control" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "検索", class: "btn btn-primary btn-block" %>
+    </div>
+  </div>
+<% end %>
+
 <%= render "public/posts/posts", posts: @posts %>
 
 <% if user_signed_in? %>
