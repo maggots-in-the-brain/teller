@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create]
     end
     resources :post_comments, only: [:destroy]
+    post 'guest_login', to: 'users#guest_login'
   end
 
   namespace :admin do

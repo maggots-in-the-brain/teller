@@ -5,7 +5,10 @@
       
       <p class="lead">あなたの知らない都市伝説がわかる</p>
 
-      <%= link_to "はじめる", new_user_registration_path, class: "btn btn-primary", style: "margin-top:4rem;" %>
+      <div style="margin-top:4rem;">
+        <%= link_to "はじめる", new_user_registration_path, class: "btn btn-primary" %>
+        <%= link_to "ゲストログイン", guest_login_path, method: :post, class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
 <% end %>
