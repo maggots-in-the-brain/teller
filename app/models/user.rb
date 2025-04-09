@@ -22,6 +22,23 @@ class User < ApplicationRecord
   def favorite?(post)
     self.favorite_posts.include?(post)
   end
+
+  has_many :followings, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
+  has_many :following_users, through: :followings, source: :followed
+  has_many :followers, class_name: "Relationship", foreign_key: :followed_id, dependent: :destroy
+  has_many :follower_users, through: :followers, source: :follower
+
+  def follow(user)
+    self.followings.find_or_create_by(followed: user)
+  end
+
+  def unfollow(user)
+    self.followings.find_by(followed: user)&.destroy
+  end
+
+  def following?(user)
+    self.following_users.include?(user)
+  end
   
   def self.guest
     user = self.find_or_initialize_by(email: "guest@test.com")

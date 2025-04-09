@@ -9,6 +9,8 @@
         <% if user_signed_in? %>
           <%= link_to 'MyPosts', user_path(current_user), class: "nav-item nav-link" %>
           <%= link_to 'MyFavorites', favorites_user_path(current_user), class: "nav-item nav-link" %>
+          <%= link_to 'MyFollowings', followings_user_path(current_user), class: "nav-item nav-link" %>
+          <%= link_to 'MyFollowers', followers_user_path(current_user), class: "nav-item nav-link" %>
           <%= link_to 'SignOut', destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
         <% else %>
           <%= link_to 'SignIn', new_user_session_path, class: "nav-item nav-link" %>

@@ -14,7 +14,12 @@
     </tr>
     <tr>
       <th><%= t i18(:user, :name) %></th>
-      <td><%= link_to @post.user.name, @post.user %></td>
+      <td>
+        <div class="d-flex justify-content-between">
+          <%= link_to @post.user.name, @post.user %>
+          <%= render 'public/relationships/follow_button', user: @post.user if user_signed_in? %>
+        </div>
+      </td>
     </tr>
     <tr>
       <th>地図</th>
@@ -25,7 +30,7 @@
   </tbody>
 </table>
 
-<%= render "public/favorites/favorite_button", post: @post %>
+<%= render "public/favorites/favorite_button", post: @post if user_signed_in? %>
 
 <%= link_to "一覧に戻る", posts_path, class: "btn btn-primary" %>
 
@@ -36,34 +41,36 @@
 
 <hr>
 
-<h2>comment</h2>
+<% if user_signed_in? %>
+  <h2>comment</h2>
 
-<div class="row">
-  <div class="col-md-4">
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
-    <%= f.submit "送信する", class: "btn btn-primary my-4" %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-4">
+    <%= form_with model: [@post, @post_comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "form-control" %>
+      <%= f.submit "送信する", class: "btn btn-primary my-4" %>
+    <% end %>
+    </div>
+    <div class="col-md-8">
+      <p>コメント件数：<%= @post.post_comments.count %></p>
+      <table class="table">
+        <tbody>
+          <% @post.post_comments.each do |post_comment| %>
+            <tr>
+              <td><%= post_comment.user.name %></td>
+              <td><%= simple_format post_comment.comment %></td>
+              <td><%= l post_comment.created_at, format: :long %></td>
+              <td>
+                <% if post_comment.user == current_user %>
+                  <%= link_to "削除", post_comment_path(post_comment), method: :delete %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="col-md-8">
-    <p>コメント件数：<%= @post.post_comments.count %></p>
-    <table class="table">
-      <tbody>
-        <% @post.post_comments.each do |post_comment| %>
-          <tr>
-            <td><%= post_comment.user.name %></td>
-            <td><%= simple_format post_comment.comment %></td>
-            <td><%= l post_comment.created_at, format: :long %></td>
-            <td>
-              <% if post_comment.user == current_user %>
-                <%= link_to "削除", post_comment_path(post_comment), method: :delete %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-</div>
+<% end %>
 
 <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>

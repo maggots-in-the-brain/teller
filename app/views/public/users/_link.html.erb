@@ -1,4 +1,9 @@
-<div class="d-flex">
-  <%= link_to 'posts', user, class: "btn btn-outline-primary" %>
-  <%= link_to 'favorites', favorites_user_path(user), class: "btn btn-outline-primary" %>
+<div class="d-flex justify-content-between">
+  <div class="d-flex">
+    <%= link_to 'posts', user, class: "btn btn-outline-primary mx-2" %>
+    <%= link_to 'favorites', favorites_user_path(user), class: "btn btn-outline-primary mx-2" %>
+    <%= link_to 'followings', followings_user_path(user), class: "btn btn-outline-primary mx-2" %>
+    <%= link_to 'followers', followers_user_path(user), class: "btn btn-outline-primary mx-2" %>
+  </div>
+  <%= render 'public/relationships/follow_button', user: user if user_signed_in? %>
 </div>
