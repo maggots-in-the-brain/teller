@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= t i18(:user, :name) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to "詳細", user, class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

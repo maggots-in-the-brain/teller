@@ -7,7 +7,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if user_signed_in? %>
-          <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+          <%= link_to 'MyPosts', user_path(current_user), class: "nav-item nav-link" %>
+          <%= link_to 'MyFavorites', favorites_user_path(current_user), class: "nav-item nav-link" %>
           <%= link_to 'SignOut', destroy_user_session_path, method: :delete, class: "nav-item nav-link" %>
         <% else %>
           <%= link_to 'SignIn', new_user_session_path, class: "nav-item nav-link" %>

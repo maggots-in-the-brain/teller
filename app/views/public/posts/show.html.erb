@@ -13,6 +13,10 @@
       <td><%= @post.body %></td>
     </tr>
     <tr>
+      <th><%= t i18(:user, :name) %></th>
+      <td><%= link_to @post.user.name, @post.user %></td>
+    </tr>
+    <tr>
       <th>地図</th>
       <td>
         <div id="map" data-latitude=<%= @post.latitude %> data-longitude=<%= @post.longitude %>></div>
@@ -20,7 +24,9 @@
     </tr>
   </tbody>
 </table>
-          
+
+<%= render "public/favorites/favorite_button", post: @post %>
+
 <%= link_to "一覧に戻る", posts_path, class: "btn btn-primary" %>
 
 <% if user_signed_in? && current_user == @post.user %>
